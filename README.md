@@ -10,10 +10,18 @@ World Happiness Report up to 2022 | Kaggle - happiness data, the happiness score
 COVID mortality rates are from https://covid19.who.int/WHO-COVID-19-global-data.csv
 
 
-Hypothesis:  Happiness scores will be negativley affected by high COVID mortality rates.
+Null Hypothesis:
+Happiness scores were not impacted by by covid deaths in the years 2020 through 2022.
+Alternative Hypothesis:
+Happiness scores were negatively impacted by covid deaths in the years 2020 through 2022 with a confidence level of 95% or p value < .05.
+
 
 csv files are imported 
 pandas dataframes are created
+Data is merged for happiness and covid datasets for 2020, 2021, 2022, data is merged on 'Country Name'
+
+Happiness average and COVID death average calculated for years 2018-2022
+
 
 
 
