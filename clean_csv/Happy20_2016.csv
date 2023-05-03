@@ -1,0 +1,20 @@
+,Country,Region,Happiness Rank,Happiness Score,Economy (GDP per Capita),Health (Life Expectancy),Freedom
+0,Denmark,Western Europe,1,7.526,1.44178,0.79504,0.57941
+5,Canada,North America,6,7.404,1.44015,0.8276,0.5737
+7,New Zealand,Australia and New Zealand,8,7.334,1.36066,0.83096,0.58147
+8,Australia,Australia and New Zealand,9,7.313,1.44443,0.8512,0.56837
+12,United States,North America,13,7.104,1.50796,0.779,0.48163
+18,Ireland,Western Europe,19,6.907,1.48341,0.81455,0.54008
+30,Colombia,Latin America and Caribbean,31,6.481,1.03032,0.59659,0.44735
+33,Saudi Arabia,Middle East and Northern Africa,34,6.379,1.48953,0.59267,0.37904
+37,Algeria,Middle East and Northern Africa,38,6.355,1.05266,0.61804,0.21006
+52,Japan,Eastern Asia,53,5.921,1.38007,0.91491,0.46761
+60,Belarus,Central and Eastern Europe,61,5.802,1.13062,0.63104,0.29091
+69,Paraguay,Latin America and Caribbean,70,5.538,0.89373,0.58295,0.46235
+78,Indonesia,Southeastern Asia,79,5.314,0.95104,0.49374,0.39237
+82,China,Eastern Asia,83,5.245,1.0278,0.73561,0.44012
+83,Bhutan,Southern Asia,84,5.196,0.8527,0.49759,0.46074
+87,Montenegro,Central and Eastern Europe,88,5.161,1.07838,0.63533,0.15111
+101,Laos,Southeastern Asia,102,4.876,0.68042,0.38291,0.52168
+150,Guinea,Sub-Saharan Africa,151,3.607,0.22415,0.18829,0.30953
+154,Togo,Sub-Saharan Africa,155,3.303,0.28123,0.24811,0.34678
