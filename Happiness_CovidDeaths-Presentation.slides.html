@@ -14641,24 +14641,12 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Has-Covid-Deaths-Affected-the-World-Hapiness?">Has Covid Deaths Affected the World Hapiness?<a class="anchor-link" href="#Has-Covid-Deaths-Affected-the-World-Hapiness?">&#182;</a></h2><p>Contributors: Parker Teske, Carie Bates, Francisco Martinez, Victoria O’Byrne, Katharyn Hogle, Corey Monsma
+<h2 id="Has-Covid-Deaths-Affected-the-World-Hapiness-Scores?">Has Covid Deaths Affected the World Hapiness Scores?<a class="anchor-link" href="#Has-Covid-Deaths-Affected-the-World-Hapiness-Scores?">&#182;</a></h2><p>Contributors: Parker Teske, Carie Bates, Francisco Martinez, Victoria O’Byrne, Katharyn Hogle, Corey Monsma
 Outline: Using data from the world happiness reports from 2018 to 2022 we will determine how the covid death and life expectancy have affected the happiness scores gathered from around the world by Kaggle. Using an independent T-Test we will determine if the changes in happiness scores between 2018 and 2022 were random or significant. With linear regression, we will determine the correlation between life expectancy and happiness scores in 2018, 2020, and 2022. This analysis can be used by the healthcare industry.</p>
-<p>Data source: -Happiness scores are from the World Happiness Report up to 2022 | Kaggle - happiness data, the happiness score is determined by six factors; levels of GDP, life expectancy, generosity, social support, freedom, and corruption) <a href="https://www.kaggle.com/datasets/unsdsn/world-happiness">https://www.kaggle.com/datasets/unsdsn/world-happiness</a> -COVID mortality rates are from <a href="https://covid19.who.int/WHO-COVID-19-global-data.csv">https://covid19.who.int/WHO-COVID-19-global-data.csv</a></p>
-
-</div>
-</div>
-</div>
-</div></section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Data source: -Happiness scores are from the World Happiness Report up to 2022 | Kaggle - happiness data, the happiness score is determined by six factors; levels of GDP, life expectancy, generosity, social support, freedom, and corruption) <a href="https://www.kaggle.com/datasets/unsdsn/world-happiness">https://www.kaggle.com/datasets/unsdsn/world-happiness</a> 
+COVID mortality rates are from <a href="https://covid19.who.int/WHO-COVID-19-global-data.csv">https://covid19.who.int/WHO-COVID-19-global-data.csv</a></p>
 <p>Johns Hopkins University <a href="https://github.com/CSSEGISandData/COVID-19">https://github.com/CSSEGISandData/COVID-19</a>
 -Life expectancy data are from <a href="https://data.worldbank.org/indicator/SP.DYN.LE00.IN?most_recent_year_desc=true&amp;view=map&amp;year=2018">https://data.worldbank.org/indicator/SP.DYN.LE00.IN?most_recent_year_desc=true&amp;view=map&amp;year=2018</a> and <a href="https://www.kaggle.com/datasets/moekhaledx/countries-of-the-world">https://www.kaggle.com/datasets/moekhaledx/countries-of-the-world</a></p>
-<p>csv files are imported pandas dataframes are created Data is merged for happiness and covid datasets for 2020, 2021, 2022, data is merged on 'Country Name'</p>
-<p>Happiness average and COVID death average calculated for years 2018-2022</p>
 
 </div>
 </div>
@@ -14756,35 +14744,6 @@ Outline: Using data from the world happiness reports from 2018 to 2022 we will d
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Shortening the DataFrames to the necessary columns</span>
-<span class="n">short18df</span> <span class="o">=</span> <span class="n">csv2018df</span><span class="p">[[</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span> <span class="s2">&quot;Happiness Score&quot;</span><span class="p">]]</span>
-<span class="n">short19df</span> <span class="o">=</span> <span class="n">csv2019df</span><span class="p">[[</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span> <span class="s2">&quot;Happiness Score&quot;</span><span class="p">]]</span>
-<span class="n">short20df</span> <span class="o">=</span> <span class="n">csv2020df</span><span class="p">[[</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span> <span class="s2">&quot;Happiness Score&quot;</span><span class="p">]]</span>
-<span class="n">short21df</span> <span class="o">=</span> <span class="n">csv2021df</span><span class="p">[[</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span> <span class="s2">&quot;Happiness Score&quot;</span><span class="p">]]</span>
-<span class="n">short22df</span> <span class="o">=</span> <span class="n">csv2022df</span><span class="p">[[</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span> <span class="s2">&quot;Happiness Score&quot;</span><span class="p">]]</span>
-
-<span class="n">shorttime2020df</span> <span class="o">=</span> <span class="n">time2021df</span><span class="p">[[</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span><span class="s2">&quot;Start of the Year: Covid Deaths&quot;</span><span class="p">,</span><span class="s2">&quot;End of the Year: Covid Deaths&quot;</span><span class="p">]]</span>
-<span class="n">shorttime2021df</span> <span class="o">=</span> <span class="n">time2021df</span><span class="p">[[</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span><span class="s2">&quot;Start of the Year: Covid Deaths&quot;</span><span class="p">,</span><span class="s2">&quot;End of the Year: Covid Deaths&quot;</span><span class="p">]]</span>
-<span class="n">shorttime2022df</span> <span class="o">=</span> <span class="n">time2022df</span><span class="p">[[</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span><span class="s2">&quot;Start of the Year: Covid Deaths&quot;</span><span class="p">,</span><span class="s2">&quot;End of the Year: Covid Deaths&quot;</span><span class="p">]]</span>
-
-<span class="n">shortlife18df</span> <span class="o">=</span> <span class="n">life18_20df</span><span class="p">[[</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span><span class="s2">&quot;Life Expectancy 18&quot;</span><span class="p">]]</span>
-<span class="n">shortlife20df</span> <span class="o">=</span> <span class="n">life18_20df</span><span class="p">[[</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span><span class="s2">&quot;Life Expectancy 20&quot;</span><span class="p">]]</span>
-<span class="n">shortlife22df</span> <span class="o">=</span> <span class="n">life22df</span><span class="p">[[</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span><span class="s2">&quot;Life Expectancy 22&quot;</span><span class="p">]]</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
@@ -14797,28 +14756,6 @@ Outline: Using data from the world happiness reports from 2018 to 2022 we will d
 
 <span class="n">shorttime2022df</span> <span class="o">=</span> <span class="n">shorttime2022df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Country&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;Start of the Year: Covid Deaths&quot;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s2">&quot;End of the Year: Covid Deaths&quot;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">})</span>
 <span class="n">shorttime2022df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Merging Dataframes by year</span>
-<span class="n">merged2018df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">short18df</span><span class="p">,</span> <span class="n">shortlife18df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Country&quot;</span><span class="p">],</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;inner&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="n">merged2020df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">short20df</span><span class="p">,</span> <span class="n">shorttime2020df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Country&quot;</span><span class="p">],</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;inner&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="n">merged2020df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">merged2020df</span><span class="p">,</span> <span class="n">shortlife20df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Country&quot;</span><span class="p">],</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;inner&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="n">merged2021df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">short21df</span><span class="p">,</span> <span class="n">shorttime2021df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Country&quot;</span><span class="p">],</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;inner&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="n">merged2022df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">short22df</span><span class="p">,</span> <span class="n">shorttime2022df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Country&quot;</span><span class="p">],</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;inner&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="n">merged2022df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">merged2022df</span><span class="p">,</span> <span class="n">shortlife22df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Country&quot;</span><span class="p">],</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;inner&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14844,7 +14781,7 @@ Outline: Using data from the world happiness reports from 2018 to 2022 we will d
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Alternative-Hypothesis:">Alternative Hypothesis:<a class="anchor-link" href="#Alternative-Hypothesis:">&#182;</a></h3><p>Happiness scores were impacted by covid deaths with a confidence level of 95% or p value &lt; .05.</p>
+<h3 id="Alternative-Hypothesis:">Alternative Hypothesis:<a class="anchor-link" href="#Alternative-Hypothesis:">&#182;</a></h3><p>Happiness scores were impacted by covid deaths with a confidence level of 95% or p value &lt; .05</p>
 <h3 id="Null-Hypothesis:">Null Hypothesis:<a class="anchor-link" href="#Null-Hypothesis:">&#182;</a></h3><p>Happiness scores were not impacted by covid deaths.</p>
 
 </div>
@@ -15823,7 +15760,7 @@ class="
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Next-Steps:">Next Steps:<a class="anchor-link" href="#Next-Steps:">&#182;</a></h2><p>•   Using other factors that make up the Happiness Score, compare the years 2018 – 2022 to determine if they have influence on the score suggesting a possible correlation. Other factor includes GDP per capita, generosity, social support, freedom to make like choices, and perceptions of corruption.</p>
+<h2 id="Next-Steps:">Next Steps:<a class="anchor-link" href="#Next-Steps:">&#182;</a></h2><p>•   Using other factors that make up the Happiness Score, compare the years 2018 – 2022 to determine if they have influence on the score suggesting a possible correlation. Other factor includes GDP per capita, generosity, social support, freedom to make life choices, and perceptions of corruption.</p>
 
 </div>
 </div>
@@ -15849,6 +15786,17 @@ class="
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>•   Publish in a public repository for others to view.</p>
 
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Questions">Questions<a class="anchor-link" href="#Questions">&#182;</a></h2>
 </div>
 </div>
 </div>
